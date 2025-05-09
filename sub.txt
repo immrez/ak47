@@ -1,13 +1,204 @@
-//profile-title: base64:2YfZhduM2LTZhyDZgdi52KfZhCDwn5iO8J+YjvCfmI4gaGFtZWRwNzE=
-
-//profile-update-interval: 1
-
-//subscription-userinfo: upload=11811160064; download=1460288880640; total=1486058684416;
-
-expire=1767212999
-
-#profile-web-page-url: @mmrezps
-vmess://eyAidiI6ICIyIiwgInBzIjogIlBMLVNwcmludF9EYXRhX0NlbnRlciIsICJhZGQiOiAiMTg4LjY4LjI0OC44IiwgInBvcnQiOiAiNTU1OCIsICJpZCI6ICJiYzk3ZjY3NC1jNTc4LTQ5NDAtOTIzNC0wYTFkYTQ2MDQxYjkiLCAiYWlkIjogIjAiLCAic2N5IjogIm5vbmUiLCAibmV0IjogIndzIiwgInR5cGUiOiAibm9uZSIsICJob3N0IjogIiIsICJwYXRoIjogIi92bWVzcz9lZD0yMDQ4IiwgInRscyI6ICIiLCAic25pIjogIiIsICJhbHBuIjogIiIsICJmcCI6ICIifQo=
-vmess://eyAidiI6ICIyIiwgInBzIjogIlBMLVNwcmludF9EYXRhX0NlbnRlciIsICJhZGQiOiAid3d3LnZpc2EuY29tLnR3IiwgInBvcnQiOiAiNDQzIiwgImlkIjogImJjOTdmNjc0LWM1NzgtNDk0MC05MjM0LTBhMWRhNDYwNDFiOSIsICJhaWQiOiAiMCIsICJzY3kiOiAibm9uZSIsICJuZXQiOiAid3MiLCAidHlwZSI6ICJub25lIiwgImhvc3QiOiAiIiwgInBhdGgiOiAiL3ZtZXNzP2VkPTIwNDgiLCAidGxzIjogInRscyIsICJzbmkiOiAiIiwgImFscG4iOiAiIiwgImZwIjogIiJ9Cg==
-hysteria2://bc97f674-c578-4940-9234-0a1da46041b9@188.68.248.8:5554/?sni=www.bing.com&alpn=h3&insecure=1#PL-Sprint_Data_Center
-tuic://bc97f674-c578-4940-9234-0a1da46041b9:admin123@188.68.248.8:5556?sni=www.bing.com&congestion_control=bbr&udp_relay_mode=native&alpn=h3&allow_insecure=1#PL-Sprint_Data_Center
+{
+  "remarks": "mmlieen2",
+  "log": {
+    "loglevel": "warning"
+  },
+  "dns": {
+    "servers": [
+      "1.1.1.1"
+    ],
+    "queryStrategy": "UseIP",
+    "tag": "dns"
+  },
+  "inbounds": [
+    {
+      "port": 10808,
+      "protocol": "socks",
+      "settings": {
+        "auth": "noauth",
+        "udp": true,
+        "userLevel": 8
+      },
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "enabled": true,
+        "routeOnly": true
+      },
+      "tag": "socks-in"
+    },
+    {
+      "port": 10853,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "1.1.1.1",
+        "network": "tcp,udp",
+        "port": 53
+      },
+      "tag": "dns-in"
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "wireguard",
+      "settings": {
+        "address": [
+          "172.16.0.2/32",
+          "2606:4700:110:8020:cda2:4be5:bfb5:1bac/128"
+        ],
+        "mtu": 1280,
+        "peers": [
+          {
+            "endpoint": "162.159.192.1:2408",
+            "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+            "keepAlive": 5
+          }
+        ],
+        "reserved": [
+          252,
+          215,
+          163
+        ],
+        "secretKey": "6MTGTFnySu6SEk+70BRGNE2MuE69QDtGnuWxhmpYi3c="
+      },
+      "tag": "chain",
+      "streamSettings": {
+        "sockopt": {
+          "dialerProxy": "proxy"
+        }
+      }
+    },
+    {
+      "protocol": "wireguard",
+      "settings": {
+        "address": [
+          "172.16.0.2/32",
+          "2606:4700:110:8dd3:4e34:96a3:2d6d:b5f8/128"
+        ],
+        "mtu": 1280,
+        "peers": [
+          {
+            "endpoint": "[2606:4700:d0::14be:1dd9:5178:a1f]:8742",
+            "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=",
+            "keepAlive": 5
+          }
+        ],
+        "reserved": [
+          12,
+          48,
+          215
+        ],
+        "secretKey": "oGKDb6JF0oFMpg2rPJqMRaCsOMx3AE+6k11uSx31f3Y="
+      },
+      "tag": "proxy",
+      "streamSettings": {
+        "sockopt": {
+          "dialerProxy": "udp-noise"
+        }
+      }
+    },
+    {
+      "tag": "udp-noise",
+      "protocol": "freedom",
+      "settings": {
+        "noises": [
+          {
+            "type": "rand",
+            "packet": "50-100",
+            "delay": "1-1"
+          },
+          {
+            "type": "rand",
+            "packet": "50-100",
+            "delay": "1-1"
+          },
+          {
+            "type": "rand",
+            "packet": "50-100",
+            "delay": "1-1"
+          },
+          {
+            "type": "rand",
+            "packet": "50-100",
+            "delay": "1-1"
+          },
+          {
+            "type": "rand",
+            "packet": "50-100",
+            "delay": "1-1"
+          }
+        ],
+        "domainStrategy": "UseIPv4v6"
+      }
+    },
+    {
+      "protocol": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "protocol": "freedom",
+      "settings": {
+        "domainStrategy": "UseIP"
+      },
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "settings": {
+        "response": {
+          "type": "http"
+        }
+      },
+      "tag": "block"
+    }
+  ],
+  "policy": {
+    "levels": {
+      "8": {
+        "connIdle": 300,
+        "downlinkOnly": 1,
+        "handshake": 4,
+        "uplinkOnly": 1
+      }
+    },
+    "system": {
+      "statsOutboundUplink": true,
+      "statsOutboundDownlink": true
+    }
+  },
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "inboundTag": [
+          "dns-in"
+        ],
+        "outboundTag": "dns-out",
+        "type": "field"
+      },
+      {
+        "inboundTag": [
+          "socks-in"
+        ],
+        "port": "53",
+        "outboundTag": "dns-out",
+        "type": "field"
+      },
+      {
+        "inboundTag": [
+          "dns"
+        ],
+        "outboundTag": "chain",
+        "type": "field"
+      },
+      {
+        "network": "tcp,udp",
+        "outboundTag": "chain",
+        "type": "field"
+      }
+    ]
+  },
+  "stats": {}
+}
