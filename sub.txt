@@ -1,11 +1,14 @@
 {
-  "remarks": "mmlieen2",
+  "remarks": "mmlieen",
   "log": {
     "loglevel": "warning"
   },
   "dns": {
     "servers": [
-      "1.1.1.1"
+      {
+        "address": "1.1.1.1",
+        "tag": "remote-dns"
+      }
     ],
     "queryStrategy": "UseIP",
     "tag": "dns"
@@ -46,7 +49,7 @@
       "settings": {
         "address": [
           "172.16.0.2/32",
-          "2606:4700:110:8020:cda2:4be5:bfb5:1bac/128"
+          "2606:4700:110:800c:9f87:fe9a:8bd5:590d/128"
         ],
         "mtu": 1280,
         "peers": [
@@ -57,11 +60,11 @@
           }
         ],
         "reserved": [
-          252,
-          215,
-          163
+          243,
+          30,
+          48
         ],
-        "secretKey": "6MTGTFnySu6SEk+70BRGNE2MuE69QDtGnuWxhmpYi3c="
+        "secretKey": "4HnKXmNcm9zQ5tkhSHejyLPL/Wf2LxnmRJ3DCTw5kkg="
       },
       "tag": "chain",
       "streamSettings": {
@@ -75,7 +78,7 @@
       "settings": {
         "address": [
           "172.16.0.2/32",
-          "2606:4700:110:8dd3:4e34:96a3:2d6d:b5f8/128"
+          "2606:4700:110:8284:ce1f:ac06:1415:48a7/128"
         ],
         "mtu": 1280,
         "peers": [
@@ -86,11 +89,11 @@
           }
         ],
         "reserved": [
-          12,
-          48,
-          215
+          56,
+          220,
+          5
         ],
-        "secretKey": "oGKDb6JF0oFMpg2rPJqMRaCsOMx3AE+6k11uSx31f3Y="
+        "secretKey": "ADpYnDVcIrOb+e5Q1ZkXtOz0aKZc0hD4E8AtG+k42Gg="
       },
       "tag": "proxy",
       "streamSettings": {
@@ -182,15 +185,22 @@
         "inboundTag": [
           "socks-in"
         ],
-        "port": "53",
+        "port": 53,
         "outboundTag": "dns-out",
+        "type": "field"
+      },
+      {
+        "inboundTag": [
+          "remote-dns"
+        ],
+        "outboundTag": "chain",
         "type": "field"
       },
       {
         "inboundTag": [
           "dns"
         ],
-        "outboundTag": "chain",
+        "outboundTag": "direct",
         "type": "field"
       },
       {
